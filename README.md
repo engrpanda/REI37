@@ -19,6 +19,10 @@ and even then only the message text is sent to your chosen provider.
 - **Min Android:** 8.0 (API 26) · **Target:** 14 (API 34)
 - **Repo:** https://github.com/engrpanda/REI37
 
+### 📥 Download
+
+**[Get the latest APK from Releases →](https://github.com/engrpanda/REI37/releases)**
+
 ---
 
 ## Table of contents
@@ -81,34 +85,6 @@ and even then only the message text is sent to your chosen provider.
 - A home-screen widget for quick access
 - A daily morning briefing notification (calendar + weather) at a time you choose
 - Light / dark / system theme
-
----
-
-## Build & install
-
-You need **Android Studio** (Ladybug/2024.2 or newer, bundling AGP 8.7+) with **JDK 17**,
-plus the **Android NDK** and **CMake** (Android Studio's SDK Manager installs both —
-the native build compiles a bundled copy of **llama.cpp** for on-device inference).
-
-1. Open the project folder in Android Studio.
-2. Let Gradle sync — this downloads all Kotlin/Java dependencies and configures the
-   native (CMake/NDK) build; needs internet the first time.
-3. Connect a phone (USB debugging on) or start an emulator. The app currently ships
-   `arm64-v8a` only, so use a physical arm64 device or an arm64 emulator image.
-4. **Run**, or **Build ▸ Build APK(s)** to produce an installable APK.
-
-From the command line (with `JAVA_HOME` pointed at a JDK — some transitive
-dependencies require **JDK 21** specifically for `kapt`, even though the app
-itself targets Java/Kotlin 17):
-
-```bash
-./gradlew :app:assembleDebug
-adb install -r app/build/outputs/apk/debug/app-debug.apk
-```
-
-> No API keys are baked into the build. All online-provider keys, Hugging Face
-> tokens, and ESP32 IPs are entered at runtime in Settings — nothing to configure
-> before building.
 
 ---
 
@@ -404,9 +380,12 @@ Type any of these in the chat box:
 
 ## License
 
-No license file is currently included in this repository. If you intend to
-accept contributions or redistribute this project, add a `LICENSE` file
-before doing so.
+**[Creative Commons Attribution-NonCommercial 4.0 International](LICENSE) (CC BY-NC 4.0)**
+
+You're free to download, use, and share REI37 for **non-commercial purposes**,
+as long as you give credit and link back to this license. **Selling it, or
+charging for access to it, is not allowed.** See the [LICENSE](LICENSE) file
+for the full terms.
 
 ---
 
