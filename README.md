@@ -35,6 +35,37 @@ real-device reports are the only way those get more reliable.
 
 ---
 
+## 📲 Installing: about the Play Protect warning
+
+When you try to install the APK, Google Play Protect will very likely show
+**"App blocked to protect your device."** This is expected — it's not a sign
+anything's wrong with the app. Play Protect's on-device scanner flags any
+brand-new APK from outside the Play Store that requests sensitive
+permissions (Screen Control's Accessibility service, direct SMS/calls,
+notification access, drawing over other apps), no matter what it actually
+does with them, because that exact combination is also common in malware.
+Since REI37 isn't listed on Google Play, it has no install history yet for
+Play Protect to trust.
+
+**To install anyway:**
+1. Open the **Play Store** app.
+2. Tap your **profile icon** (top right) ▸ **Play Protect**.
+3. Tap the **settings gear** icon (top right of that screen).
+4. Turn **off** "Scan apps with Play Protect."
+5. Install the REI37 APK — the warning should be gone.
+6. **Turn "Scan apps with Play Protect" back on afterward.** You only need
+   it off for this one install, and it's genuinely useful protection for
+   everything else on your phone.
+
+Exact wording/steps vary a little by Android version and phone brand, but
+it's always under Play Store ▸ your profile ▸ **Play Protect**.
+
+Would rather not disable it at all? You can instead
+[report this specific warning as a false positive to Google](https://support.google.com/faqs/answer/9313070)
+— free, no Play Store listing required, just not immediate or guaranteed.
+
+---
+
 REI37 is an Android app: a stateful AI companion with a real personality, an
 animated orb face with 16 emotions that reacts to both your question and his
 own answer, long-term memory, voice in/out, a customizable hands-free wake
@@ -67,25 +98,26 @@ your chosen provider.
 
 ## 📋 Table of contents
 1. [🧪 Beta status](#-beta-status)
-2. [✨ What REI37 can do](#-what-rei37-can-do)
-3. [🚀 First run](#-first-run)
-4. [💬 Talking to REI37](#-talking-to-rei37)
-5. [🎙️ Voice: wake word, always listening, barge-in](#️-voice-wake-word-always-listening-barge-in)
-6. [🧠 The three AI brains](#-the-three-ai-brains)
-7. [📦 Offline AI — Manage models](#-offline-ai--manage-models)
-8. [☁️ Connecting an Online AI](#️-connecting-an-online-ai)
-9. [🗂️ Memory & documents](#️-memory--documents)
-10. [🕹️ Screen buddy, screen control & macros](#️-screen-buddy-screen-control--macros)
-11. [⚙️ Automation: rules & saved workflows](#️-automation-rules--saved-workflows)
-12. [💬 Notification auto-reply](#-notification-auto-reply)
-13. [🛍️ More features (the Store)](#️-more-features-the-store)
-14. [🏠 Smart home: ESP32 & Home Assistant](#-smart-home-esp32--home-assistant)
-15. [🇵🇭 Philippines live data & alerts](#-philippines-live-data--alerts)
-16. [⚙️ Settings screen](#️-settings-screen)
-17. [⌨️ Quick commands](#️-quick-commands)
-18. [🔒 Privacy](#-privacy)
-19. [🛠️ Troubleshooting](#-troubleshooting)
-20. [📄 License](#-license)
+2. [📲 Installing: about the Play Protect warning](#-installing-about-the-play-protect-warning)
+3. [✨ What REI37 can do](#-what-rei37-can-do)
+4. [🚀 First run](#-first-run)
+5. [💬 Talking to REI37](#-talking-to-rei37)
+6. [🎙️ Voice: wake word, always listening, barge-in](#️-voice-wake-word-always-listening-barge-in)
+7. [🧠 The three AI brains](#-the-three-ai-brains)
+8. [📦 Offline AI — Manage models](#-offline-ai--manage-models)
+9. [☁️ Connecting an Online AI](#️-connecting-an-online-ai)
+10. [🗂️ Memory & documents](#️-memory--documents)
+11. [🕹️ Screen buddy, screen control & macros](#️-screen-buddy-screen-control--macros)
+12. [⚙️ Automation: rules & saved workflows](#️-automation-rules--saved-workflows)
+13. [💬 Notification auto-reply](#-notification-auto-reply)
+14. [🛍️ More features (the Store)](#️-more-features-the-store)
+15. [🏠 Smart home: ESP32 & Home Assistant](#-smart-home-esp32--home-assistant)
+16. [🇵🇭 Philippines live data & alerts](#-philippines-live-data--alerts)
+17. [⚙️ Settings screen](#️-settings-screen)
+18. [⌨️ Quick commands](#️-quick-commands)
+19. [🔒 Privacy](#-privacy)
+20. [🛠️ Troubleshooting](#-troubleshooting)
+21. [📄 License](#-license)
 
 ---
 
