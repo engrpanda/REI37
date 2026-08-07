@@ -4,6 +4,7 @@
 
 **A stateful AI companion for Android — real personality, 16 emotions, long-term memory, voice, a floating screen buddy, recordable macros, and real smart-home control.**
 
+[![Status: Beta](https://img.shields.io/badge/status-beta-red.svg)](#-beta-status)
 [![License: CC BY-NC 4.0](https://img.shields.io/badge/License-CC%20BY--NC%204.0-lightgrey.svg)](LICENSE)
 [![Platform](https://img.shields.io/badge/Platform-Android-3DDC84?logo=android&logoColor=white)](#)
 [![Min SDK](https://img.shields.io/badge/Min%20Android-8.0%20(API%2026)-blue)](#)
@@ -13,6 +14,24 @@
 ### 📥 [**Download the latest APK →**](https://github.com/engrpanda/REI37/releases)
 
 </div>
+
+---
+
+## 🧪 Beta status
+
+**REI37 is still in beta (`0.1.1-beta`) and needs more real-world testing.**
+Most features work as described below, but with this many moving parts —
+on-device AI models, screen automation, background alert polling, several
+third-party API integrations — expect rough edges: an occasional crash, a
+feature that behaves differently on your specific phone/OEM skin, or a
+description that's slightly ahead of (or behind) what's actually implemented.
+
+If something breaks, behaves oddly, or just doesn't match what this README
+says, please [open an issue](https://github.com/engrpanda/REI37/issues) with
+your device model, Android version, and what you were doing — that's exactly
+the kind of feedback this beta needs. Screen control/macro features in
+particular are accessibility-based and OEM camera/UI layouts vary a lot, so
+real-device reports are the only way those get more reliable.
 
 ---
 
@@ -47,25 +66,26 @@ your chosen provider.
 ---
 
 ## 📋 Table of contents
-1. [✨ What REI37 can do](#-what-rei37-can-do)
-2. [🚀 First run](#-first-run)
-3. [💬 Talking to REI37](#-talking-to-rei37)
-4. [🎙️ Voice: wake word, always listening, barge-in](#️-voice-wake-word-always-listening-barge-in)
-5. [🧠 The three AI brains](#-the-three-ai-brains)
-6. [📦 Offline AI — Manage models](#-offline-ai--manage-models)
-7. [☁️ Connecting an Online AI](#️-connecting-an-online-ai)
-8. [🗂️ Memory & documents](#️-memory--documents)
-9. [🕹️ Screen buddy, screen control & macros](#️-screen-buddy-screen-control--macros)
-10. [⚙️ Automation: rules & saved workflows](#️-automation-rules--saved-workflows)
-11. [💬 Notification auto-reply](#-notification-auto-reply)
-12. [🛍️ More features (the Store)](#️-more-features-the-store)
-13. [🏠 Smart home: ESP32 & Home Assistant](#-smart-home-esp32--home-assistant)
-14. [🇵🇭 Philippines live data & alerts](#-philippines-live-data--alerts)
-15. [⚙️ Settings screen](#️-settings-screen)
-16. [⌨️ Quick commands](#️-quick-commands)
-17. [🔒 Privacy](#-privacy)
-18. [🛠️ Troubleshooting](#-troubleshooting)
-19. [📄 License](#-license)
+1. [🧪 Beta status](#-beta-status)
+2. [✨ What REI37 can do](#-what-rei37-can-do)
+3. [🚀 First run](#-first-run)
+4. [💬 Talking to REI37](#-talking-to-rei37)
+5. [🎙️ Voice: wake word, always listening, barge-in](#️-voice-wake-word-always-listening-barge-in)
+6. [🧠 The three AI brains](#-the-three-ai-brains)
+7. [📦 Offline AI — Manage models](#-offline-ai--manage-models)
+8. [☁️ Connecting an Online AI](#️-connecting-an-online-ai)
+9. [🗂️ Memory & documents](#️-memory--documents)
+10. [🕹️ Screen buddy, screen control & macros](#️-screen-buddy-screen-control--macros)
+11. [⚙️ Automation: rules & saved workflows](#️-automation-rules--saved-workflows)
+12. [💬 Notification auto-reply](#-notification-auto-reply)
+13. [🛍️ More features (the Store)](#️-more-features-the-store)
+14. [🏠 Smart home: ESP32 & Home Assistant](#-smart-home-esp32--home-assistant)
+15. [🇵🇭 Philippines live data & alerts](#-philippines-live-data--alerts)
+16. [⚙️ Settings screen](#️-settings-screen)
+17. [⌨️ Quick commands](#️-quick-commands)
+18. [🔒 Privacy](#-privacy)
+19. [🛠️ Troubleshooting](#-troubleshooting)
+20. [📄 License](#-license)
 
 ---
 
