@@ -19,7 +19,7 @@
 
 ## 🧪 Beta status
 
-**REI37 is still in beta (`0.1.1-beta`) and needs more real-world testing.**
+**REI37 is still in beta (`0.1.2-beta`) and needs more real-world testing.**
 Most features work as described below, but with this many moving parts —
 on-device AI models, screen automation, background alert polling, several
 third-party API integrations — expect rough edges: an occasional crash, a
@@ -162,7 +162,8 @@ your chosen provider.
 - Assistant skills: alarms, calendar/morning briefing, calls & texts (with per-contact scheduling), notification auto-reply, opening apps, YouTube/Spotify, email, notes, ride-hailing, camera, persona, macros
 - Device controls: Wi-Fi/flashlight/brightness toggles, vision
 - Tools: navigation, speed test, storage info, battery info
-- Philippines live data: weather (PAGASA-credited), news (ABS-CBN by default), currency, fuel prices, earthquakes, volcano activity, PAGASA weather/cyclone alerts, GDACS-based disaster alerts
+- Philippines live data: weather (PAGASA-credited), news (ABS-CBN by default), currency, fuel prices, earthquakes, volcano activity
+- Emergency alerts: PAGASA weather/cyclone advisories, GDACS disaster alerts, and USGS earthquake alerts — delivered as a full-screen popup with an emergency tone and vibration, and saved to your chat history in full
 - Safety: an offline emergency hotline directory
 - Personalization: voice picker, cloud voice (ElevenLabs)
 
@@ -349,11 +350,11 @@ switch — "Summon me" — right next to REI37's name on the home screen):
 
 - **Screen buddy**: he leaves the chat screen and floats on top of every app
   as a small animated, draggable sprite — tap to change his mood, double-tap
-  to talk to him hands-free, long-press for a menu (open the app, or
-  stop/resume his hovering). His in-app avatar hides while he's out there so
-  he's never shown twice. Needs the "draw over other apps" permission
-  (Android prompts you), and on Android 13+, a notification permission for
-  the persistent control.
+  to talk to him hands-free, long-press for a menu (go to the app,
+  stop/resume his hovering, or unsummon him). His in-app avatar hides while
+  he's out there so he's never shown twice. Needs the "draw over other apps"
+  permission (Android prompts you), and on Android 13+, a notification
+  permission for the persistent control.
 - **Screen control**: with this on, REI37 can tap and type inside *other*
   apps for you (e.g. "open Facebook and search cats"), using Android's
   Accessibility service. Turning it on sends you to system Accessibility
@@ -422,7 +423,8 @@ Open the drawer ▸ **More features** for a searchable, category-grouped,
 | Assistant skills | Alarm, morning briefing (calendar), direct call/text (with per-contact Automate tab), notification auto-reply, open apps, YouTube/Spotify default app, email, notes, ride-hailing, camera, persona, macros |
 | Device controls | Wi-Fi/flashlight/brightness toggles, vision |
 | Tools & diagnostics | Navigation, speed test, storage info, battery info |
-| Philippines live data | Weather, news, currency, fuel prices, earthquakes, volcano activity, PAGASA alerts, disaster alerts |
+| Philippines live data | Weather, news, currency, fuel prices, earthquakes, volcano activity |
+| Emergency alerts | PAGASA alerts, disaster alerts (GDACS), earthquake alerts (USGS) |
 | Safety | Offline emergency hotline directory |
 | Personalize | Voice picker, cloud voice (ElevenLabs) |
 
@@ -487,21 +489,73 @@ Under More features ▸ Philippines live data:
 
 - **Weather, news, currency, fuel prices, earthquakes, volcano activity** —
   quick lookups, e.g. "what's the weather", "any earthquakes".
-- **PAGASA Alerts** (opt-in, background notifications): checks PAGASA's
-  Weather Advisory and Tropical Cyclone Bulletin pages every ~15 minutes and
-  notifies you the moment either one changes. The flood-specific advisory
-  isn't covered — PAGASA has no static page or feed for it to poll the same
-  way; severe weather that would cause flooding is usually still caught by
-  the other two.
-- **Disaster Alerts** (opt-in, background notifications): checks GDACS's
-  (Global Disaster Alert and Coordination System) public feed every ~15
-  minutes and notifies you of a new or updated earthquake, tropical cyclone,
-  flood, or volcano alert affecting the Philippines. This exists because
-  NDRRMC's own site blocks automated requests (a Cloudflare bot challenge),
-  so there's no NDRRMC page or feed this app can poll directly — GDACS
-  covers the same hazard types as the closest working alternative.
+- **PAGASA Alerts** (opt-in): checks PAGASA's Weather Advisory and Tropical
+  Cyclone Bulletin pages and alerts you the moment either one changes. The
+  flood-specific advisory isn't covered — PAGASA has no static page or feed
+  for it to poll the same way; severe weather that would cause flooding is
+  usually still caught by the other two.
+- **Disaster Alerts** (opt-in): checks GDACS's (Global Disaster Alert and
+  Coordination System) public feed for a new or updated earthquake, tropical
+  cyclone, flood, or volcano alert affecting the Philippines. This exists
+  because NDRRMC's own site blocks automated requests (a Cloudflare bot
+  challenge), so there's no NDRRMC page or feed this app can poll directly —
+  GDACS covers the same hazard types as the closest working alternative.
+- **Earthquake Alerts** (opt-in): watches USGS's Philippine-region feed,
+  which publishes within minutes of an event. GDACS only lists quakes big
+  enough to matter internationally and lags well behind, so this watches the
+  seismic data directly. PHIVOLCS is the Philippine authority but publishes
+  no feed an app can read unattended.
 
-Both alert types are checked on a timer, not true instant push.
+All three are checked on one shared ~15-minute timer, not true instant push.
+
+### How an alert reaches you
+
+Under **How alerts reach you** (in any of the three alert features'
+dialogs) — three
+switches, all on by default, plus a **Test** button that fires a sample alert
+through the real path so you can check the sound, the buzz and the popup on
+your own phone without waiting for a typhoon.
+
+- **Pop up with the full alert** — REI37 shows the complete advisory on
+  screen, scrollable and selectable, over the lock screen and waking the
+  display like an alarm. A notification's body gets truncated mid-sentence;
+  a PAGASA bulletin routinely runs past that limit.
+- **Emergency sound** — the WEA two-tone attention signal (853 Hz + 960 Hz,
+  the pair NDRRMC cell broadcasts use), played on the *alarm* stream so it's
+  audible with the ringer silenced.
+- **Vibration** — a long-short-long pattern, deliberately unlike an ordinary
+  message buzz.
+
+**Every alert is also saved to your chat history in full**, in its own
+thread, so dismissing the popup or swiping the notification never loses it.
+
+Alerts REI37 judges non-urgent — a green GDACS event, a distant quake —
+still arrive complete and are still saved to chat, but stay quiet and don't
+take over the screen.
+
+On Android 14, the lock-screen popup needs **Full screen notifications**
+enabled for REI37 in Android Settings. Without it, alerts still arrive as a
+heads-up notification you tap to open; the settings dialog tells you when
+this applies.
+
+### Alerts that know where you are
+
+If you shared your location or address during setup, alerts use it:
+
+- Earthquakes show how far away they were — "142 km NE of Cainta, Rizal" —
+  and how loudly REI37 announces one depends on distance *and* magnitude,
+  not magnitude alone. You choose the region-wide threshold (default
+  magnitude 4.5); a weaker quake within 150 km of you also qualifies.
+- GDACS alerts show coordinates and distance, and an event within 200 km is
+  treated as one step more serious. Distance never *lowers* a severity GDACS
+  assigned — only raises it for someone standing near it.
+- **A PAGASA advisory that names your own province says so on the first
+  line**, with the Tropical Cyclone Wind Signal in force over it when there
+  is one. That number is what decides whether classes are suspended, and
+  finding it otherwise means scanning a wall of province names on a phone.
+
+REI37 is not an official warning system. Always follow PAGASA, PHIVOLCS and
+NDRRMC for authoritative guidance.
 
 ---
 
